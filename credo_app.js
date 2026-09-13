@@ -20,7 +20,28 @@
     initReveal();
     if (finePointer) initCursor();
     initSound();
+    initForm();
   });
+
+  /* ============================================================
+     0. CONTACT FORM (Netlify Forms — AJAX submit + inline success)
+     ============================================================ */
+  function initForm() {
+    var form = document.getElementById('pform');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var body = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
+        .then(function (r) {
+          if (!r.ok) throw new Error('bad status');
+          var fields = form.querySelector('.fields'), ok = form.querySelector('.ok');
+          if (fields) fields.style.display = 'none';
+          if (ok) ok.style.display = 'block';
+        })
+        .catch(function () { form.submit(); });   // fall back to a normal POST
+    });
+  }
 
   /* ============================================================
      1. WEBGL HERO — displaced organic form + warm dust

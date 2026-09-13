@@ -3,39 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Credo — Creative Studio</title>
+<title>Credo — Creative & Web Design Studio</title>
+<meta name="description" content="Credo is an independent design & web studio crafting warm, characterful brand sites — branding, web design, motion and clean front-end code, shipped end to end.">
 <script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="credo.css">
 <style>
-  :root{
-    --brown:#241a14; --brown2:#2c2018; --cream:#efe7db; --cream2:#f6f1e8;
-    --clay:#e0552b; --clay2:#f0794a; --muted:#b6a692; --inkmuted:#8c7a67;
-    --line:rgba(239,231,219,.16); --linedark:rgba(36,26,20,.12);
-    --geo:"Futura","Avenir Next","Century Gothic","Poppins",system-ui,Arial,sans-serif;
-    --serif:"Hoefler Text","Baskerville",Georgia,serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html:not(.js){scroll-behavior:smooth}
-  body{background:var(--brown); color:var(--cream); font-family:var(--geo);
-    -webkit-font-smoothing:antialiased; overflow-x:hidden; line-height:1.5}
-  img{display:block; max-width:100%}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 46px}
-  .clay{color:var(--clay)} .out{color:transparent;-webkit-text-stroke:1.6px currentColor}
-  a{color:inherit; text-decoration:none}
-  .eyebrow{display:inline-flex; align-items:center; gap:11px; font-size:12px; letter-spacing:.26em;
-    text-transform:uppercase; color:var(--muted); margin-bottom:22px}
-  .eyebrow .sq{width:8px;height:8px;background:var(--clay);border-radius:2px}
-
-  /* ---------- NAV ---------- */
-  nav.bar{position:absolute; top:0; left:0; right:0; z-index:20; display:flex; align-items:center;
-    justify-content:space-between; padding:26px 46px}
-  .logo{display:flex; align-items:center; gap:9px; font-weight:700; font-size:25px; letter-spacing:-.02em}
-  .logo .d{width:12px;height:12px;border-radius:50%;background:var(--clay)}
-  .navlinks{display:flex; align-items:center; gap:32px; font-size:13px}
-  .navlinks a{opacity:.85} .navlinks a:hover{opacity:1}
-  .btn{background:var(--clay); color:#fff; padding:12px 22px; border-radius:999px; font-size:13px; font-weight:600}
-  .btn:hover{background:var(--clay2)}
-  .btn.ghost{background:transparent; border:1px solid var(--line); color:var(--cream)}
-
   /* ---------- HERO ---------- */
   .hero{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center;
     overflow:hidden;
@@ -48,103 +20,43 @@
   .blob.b1{width:360px;height:320px;background:radial-gradient(circle at 35% 30%,var(--clay2),var(--clay));
     right:-70px; top:130px; transform:rotate(-12deg)}
   .blob.b2{width:150px;height:140px;background:var(--clay);opacity:.16; left:52%; bottom:120px; transform:rotate(20deg)}
-  .hero .wrap{position:relative; z-index:2}
+  .hero .glcanvas{position:absolute; inset:0; z-index:1; width:100%; height:100%; display:block}
+  .hero .heroscrim{position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(95deg, var(--brown) 8%, rgba(36,26,20,.82) 34%, rgba(36,26,20,.30) 58%, rgba(36,26,20,0) 78%)}
+  .hero .grain{z-index:6}
+  .hero.gl-on .blob{display:none}
+  .hero .wrap{position:relative; z-index:4}
   h1.head{font-weight:700; letter-spacing:-.03em; line-height:.92; font-size:clamp(52px,8.6vw,132px); text-transform:lowercase}
   .hero .lead{max-width:520px; margin-top:28px; font-size:16.5px; color:#ddd2c3}
-  .hero .heroactions{margin-top:36px; display:flex; gap:14px; align-items:center}
-  .hero .foot{position:absolute; z-index:2; left:0;right:0; bottom:26px}
+  .hero .heroactions{margin-top:36px; display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+  .hero .foot{position:absolute; z-index:4; left:0;right:0; bottom:26px}
   .hero .foot .wrap{display:flex; align-items:center; justify-content:space-between;
     border-top:1px solid var(--line); padding-top:18px; font-size:12px; letter-spacing:.16em;
     text-transform:uppercase; color:var(--muted)}
   .hero .foot b{color:var(--cream); font-weight:600}
-
-  /* ---------- MARQUEE ---------- */
-  .strip{background:var(--clay); color:#fff; padding:16px 0; overflow:hidden; white-space:nowrap}
-  .strip .row{display:inline-flex; gap:44px; font-size:14px; letter-spacing:.14em; text-transform:uppercase; font-weight:600}
-  .strip span{opacity:.85}
-
-  /* ---------- SECTION SHELL ---------- */
-  section{position:relative}
-  .pad{padding:110px 0}
-  .sechead{display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-bottom:52px}
-  .sechead h2{font-weight:700; letter-spacing:-.02em; line-height:1; font-size:clamp(34px,4.6vw,60px); text-transform:lowercase}
-  .sechead p{max-width:360px; color:var(--muted); font-size:15px}
-  .num{color:var(--clay); font-weight:700; font-size:13px; letter-spacing:.2em}
+  .hero .scrollcue{position:absolute; z-index:4; left:50%; bottom:74px; transform:translateX(-50%);
+    font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted);
+    display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:none}
+  .hero .scrollcue .ln{width:1px; height:34px; background:linear-gradient(var(--clay),transparent);
+    animation:cue 2.2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.5}50%{transform:scaleY(1);opacity:1}}
 
   /* ---------- WORK ---------- */
   .work{background:var(--brown)}
-  .grid{display:grid; grid-template-columns:1fr 1fr; gap:26px}
-  .card{position:relative; border-radius:16px; overflow:hidden; background:var(--brown2); border:1px solid var(--line)}
-  .card .ph{aspect-ratio:3/2; overflow:hidden}
-  .card .ph img{width:100%;height:100%;object-fit:cover; transition:transform .6s ease}
-  .card:hover .ph img{transform:scale(1.04)}
-  .card .cap{display:flex; align-items:center; justify-content:space-between; padding:20px 22px}
-  .card .cap .t{font-weight:600; font-size:18px}
-  .card .cap .s{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
-  .card .tag{position:absolute; top:16px; left:16px; background:rgba(36,26,20,.72); backdrop-filter:blur(6px);
+  .feat{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-bottom:70px}
+  .fcard{position:relative; border-radius:16px; overflow:hidden; background:var(--brown2); border:1px solid var(--line);
+    display:block; transition:transform .4s ease, border-color .4s}
+  .fcard:hover{transform:translateY(-6px); border-color:rgba(224,85,43,.6)}
+  .fcard .ph{aspect-ratio:3/2; overflow:hidden}
+  .fcard .ph img{width:100%;height:100%;object-fit:cover;object-position:top; transition:transform .6s ease}
+  .fcard:hover .ph img{transform:scale(1.05)}
+  .fcard .cap{display:flex; align-items:center; justify-content:space-between; padding:20px 22px}
+  .fcard .cap .t{font-weight:600; font-size:18px}
+  .fcard .cap .s{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+  .fcard .cap .go{color:var(--clay); font-size:20px; transition:transform .3s}
+  .fcard:hover .cap .go{transform:translateX(5px)}
+  .fcard .tag{position:absolute; top:16px; left:16px; background:rgba(36,26,20,.72); backdrop-filter:blur(6px);
     color:var(--cream); font-size:11px; letter-spacing:.16em; text-transform:uppercase; padding:7px 12px; border-radius:999px}
-
-  /* ---------- STUDIO / ABOUT ---------- */
-  .studio{background:var(--cream); color:var(--brown)}
-  .studio .eyebrow{color:var(--inkmuted)}
-  .studio .split{display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center}
-  .studio h2{font-weight:700; letter-spacing:-.02em; line-height:1.02; font-size:clamp(30px,3.8vw,50px); text-transform:lowercase; margin-bottom:22px}
-  .studio h2 .clay{color:var(--clay)}
-  .studio p{color:#5c4b3b; font-size:16px; margin-bottom:16px; max-width:520px}
-  .studio .stats{display:flex; gap:44px; margin-top:34px}
-  .studio .stats b{display:block; font-size:40px; font-weight:700; letter-spacing:-.02em; color:var(--brown)}
-  .studio .stats span{font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--inkmuted)}
-  .studio .imgwrap{position:relative; border-radius:18px; overflow:hidden}
-  .studio .imgwrap img{width:100%; aspect-ratio:4/5; object-fit:cover}
-  .studio .imgwrap .badge{position:absolute; bottom:16px; left:16px; background:var(--clay); color:#fff;
-    font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; padding:9px 16px; border-radius:999px}
-
-  /* ---------- SERVICES ---------- */
-  .svc{background:var(--brown)}
-  .svcrow{display:grid; grid-template-columns:60px 1fr 1fr auto; gap:24px; align-items:center;
-    padding:30px 0; border-top:1px solid var(--line)}
-  .svcrow:last-child{border-bottom:1px solid var(--line)}
-  .svcrow .n{color:var(--clay); font-weight:700; font-size:14px}
-  .svcrow .name{font-size:clamp(24px,3vw,36px); font-weight:700; letter-spacing:-.02em; text-transform:lowercase}
-  .svcrow .desc{color:var(--muted); font-size:14.5px}
-  .svcrow .arrow{color:var(--clay); font-size:22px}
-
-  /* ---------- TEAM ---------- */
-  .team{background:var(--cream); color:var(--brown)}
-  .team .eyebrow{color:var(--inkmuted)}
-  .team h2{font-weight:700; letter-spacing:-.02em; line-height:1; font-size:clamp(34px,4.6vw,60px); text-transform:lowercase; margin-bottom:40px}
-  .team .teamimg{border-radius:18px; overflow:hidden; margin-bottom:34px}
-  .team .teamimg img{width:100%; aspect-ratio:16/7; object-fit:cover}
-  .people{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
-  .person{background:var(--cream2); border:1px solid var(--linedark); border-radius:14px; overflow:hidden}
-  .person .pic{aspect-ratio:1/1; overflow:hidden; background:#e4d9c9}
-  .person .pic img{width:100%;height:100%;object-fit:cover}
-  .person .pic.ph{display:flex;align-items:center;justify-content:center;color:var(--inkmuted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:10px}
-  .person .b{padding:16px 16px 18px}
-  .person .b .nm{font-weight:700; font-size:16px}
-  .person .b .rl{font-size:12.5px; color:var(--inkmuted); letter-spacing:.04em; margin-top:3px}
-
-  /* ---------- CTA ---------- */
-  .cta{background:var(--clay); color:#fff; text-align:center}
-  .cta h2{font-weight:700; letter-spacing:-.03em; line-height:.98; font-size:clamp(40px,6.4vw,92px); text-transform:lowercase}
-  .cta p{max-width:420px; margin:20px auto 0; font-size:16px; opacity:.92}
-  .cta .btn{background:var(--brown); margin-top:34px; display:inline-block; padding:16px 34px; font-size:14px}
-  .cta .btn:hover{background:#160f0a}
-
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--brown); padding:56px 0 34px}
-  .fgrid{display:flex; align-items:flex-start; justify-content:space-between; gap:30px; flex-wrap:wrap}
-  .fcol h4{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:16px}
-  .fcol a{display:block; font-size:14px; color:#d8cdbe; margin-bottom:10px}
-  .fbottom{display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line);
-    margin-top:44px; padding-top:22px; font-size:12.5px; color:var(--muted); letter-spacing:.06em}
-
-  @media(max-width:820px){
-    .navlinks{display:none} .wrap{padding:0 24px} nav.bar{padding:20px 24px}
-    .grid{grid-template-columns:1fr} .studio .split{grid-template-columns:1fr; gap:34px}
-    .svcrow{grid-template-columns:36px 1fr; row-gap:6px} .svcrow .desc,.svcrow .arrow{display:none}
-    .people{grid-template-columns:1fr 1fr} .sechead{flex-direction:column; align-items:flex-start}
-  }
 
   /* ---------- DIAGONAL WORK TICKER ---------- */
   .ticker{position:relative; transform:rotate(-7deg); transform-origin:center; width:122%; margin-left:-11%;
@@ -164,82 +76,129 @@
   .bcard .shot img{width:100%;height:100%;object-fit:cover;object-position:top; transition:transform .5s}
   .bcard:hover .shot img{transform:scale(1.05)}
 
-  /* ---------- WEBGL HERO CANVAS ---------- */
-  .hero .glcanvas{position:absolute; inset:0; z-index:1; width:100%; height:100%; display:block}
-  .hero .heroscrim{position:absolute; inset:0; z-index:2; pointer-events:none;
-    background:linear-gradient(95deg, var(--brown) 8%, rgba(36,26,20,.82) 34%, rgba(36,26,20,.30) 58%, rgba(36,26,20,0) 78%)}
-  .hero .wrap{z-index:4} .hero .foot{z-index:4} .hero .scrollcue{z-index:4}
-  .hero .grain{z-index:6}
-  .hero.gl-on .blob{display:none}
-  .hero .scrollcue{position:absolute; z-index:3; left:50%; bottom:74px; transform:translateX(-50%);
-    font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted);
-    display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:none}
-  .hero .scrollcue .ln{width:1px; height:34px; background:linear-gradient(var(--clay),transparent);
-    animation:cue 2.2s ease-in-out infinite}
-  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.5}50%{transform:scaleY(1);opacity:1}}
+  /* ---------- STUDIO / ABOUT ---------- */
+  .studio{background:var(--cream); color:var(--brown)}
+  .studio .eyebrow{color:var(--inkmuted)}
+  .studio .split{display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center}
+  .studio h2{font-weight:700; letter-spacing:-.02em; line-height:1.02; font-size:clamp(30px,3.8vw,50px); text-transform:lowercase; margin-bottom:22px}
+  .studio h2 .clay{color:var(--clay)}
+  .studio p{color:#5c4b3b; font-size:16px; margin-bottom:16px; max-width:520px}
+  .studio .stats{display:flex; gap:44px; margin-top:34px}
+  .studio .stats b{display:block; font-size:40px; font-weight:700; letter-spacing:-.02em; color:var(--brown)}
+  .studio .stats span{font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--inkmuted)}
+  .studio .imgwrap{position:relative; border-radius:18px; overflow:hidden}
+  .studio .imgwrap img{width:100%; aspect-ratio:4/5; object-fit:cover}
+  .studio .imgwrap .badge{position:absolute; bottom:16px; left:16px; background:var(--clay); color:#fff;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; padding:9px 16px; border-radius:999px}
 
-  /* ---------- SCROLL REVEAL ---------- */
-  html.js [data-reveal]{opacity:0; transform:translateY(30px); will-change:opacity,transform}
-  html.js [data-reveal].in{opacity:1; transform:none;
-    transition:opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1)}
+  /* ---------- SERVICES ---------- */
+  .svc{background:var(--brown)}
+  .svcrow{display:grid; grid-template-columns:60px 1fr 1fr auto; gap:24px; align-items:center;
+    padding:30px 0; border-top:1px solid var(--line); transition:padding-left .3s}
+  .svcrow:last-child{border-bottom:1px solid var(--line)}
+  .svcrow:hover{padding-left:10px}
+  .svcrow .n{color:var(--clay); font-weight:700; font-size:14px}
+  .svcrow .name{font-size:clamp(24px,3vw,36px); font-weight:700; letter-spacing:-.02em; text-transform:lowercase}
+  .svcrow .desc{color:var(--muted); font-size:14.5px}
+  .svcrow .arrow{color:var(--clay); font-size:22px}
 
-  /* ---------- CUSTOM CURSOR + MAGNETIC ---------- */
-  html.cursor-on, html.cursor-on *{cursor:none !important}
-  .cur-dot,.cur-ring{position:fixed; top:0; left:0; z-index:9999; pointer-events:none;
-    border-radius:50%; mix-blend-mode:difference; opacity:0; transition:opacity .3s}
-  html.cursor-on .cur-dot,html.cursor-on .cur-ring{opacity:1}
-  .cur-dot{width:7px; height:7px; background:#fff; margin:-3.5px 0 0 -3.5px}
-  .cur-ring{width:40px; height:40px; border:1px solid #fff; margin:-20px 0 0 -20px;
-    transition:width .25s ease, height .25s ease, margin .25s ease, opacity .3s, background .25s}
-  html.cur-hover .cur-ring{width:64px; height:64px; margin:-32px 0 0 -32px; background:rgba(255,255,255,.12)}
-  .magnetic{display:inline-block; will-change:transform}
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--cream); color:var(--brown)}
+  .process .eyebrow{color:var(--inkmuted)}
+  .process .sechead h2{color:var(--brown)}
+  .proc{display:grid; grid-template-columns:repeat(4,1fr); gap:24px}
+  .pstep{border-top:2px solid var(--clay); padding-top:22px}
+  .pstep .pn{font-size:13px; font-weight:700; letter-spacing:.2em; color:var(--clay); margin-bottom:16px}
+  .pstep h3{font-size:22px; font-weight:700; letter-spacing:-.01em; text-transform:lowercase; margin-bottom:12px}
+  .pstep p{font-size:14.5px; color:#5c4b3b; line-height:1.6}
 
-  /* ---------- SOUND TOGGLE ---------- */
-  .soundtoggle{position:fixed; z-index:40; left:24px; bottom:22px; display:flex; align-items:center; gap:11px;
-    background:rgba(36,26,20,.66); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-    border:1px solid rgba(239,231,219,.2); color:var(--cream); padding:10px 16px 10px 13px; border-radius:999px;
-    font-family:var(--geo); font-size:11px; letter-spacing:.18em; text-transform:uppercase; cursor:pointer;
-    transition:border-color .3s, background .3s}
-  .soundtoggle:hover{border-color:rgba(224,85,43,.7)}
-  .soundtoggle .eq{display:flex; align-items:flex-end; gap:2.5px; height:15px}
-  .soundtoggle .eq i{width:2.5px; height:5px; background:var(--clay); border-radius:1px; transform-origin:bottom}
-  .soundtoggle.on .eq i{animation:eq .9s ease-in-out infinite}
-  .soundtoggle.on .eq i:nth-child(2){animation-delay:.15s}
-  .soundtoggle.on .eq i:nth-child(3){animation-delay:.3s}
-  .soundtoggle.on .eq i:nth-child(4){animation-delay:.45s}
-  @keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(2.6)}}
-  .soundtoggle .lbl::after{content:"Sound off"}
-  .soundtoggle.on .lbl::after{content:"Sound on"}
+  /* ---------- TESTIMONIALS ---------- */
+  .quotes{background:var(--brown2)}
+  .tgrid{display:grid; grid-template-columns:1fr 1fr; gap:26px}
+  .tcard{background:var(--brown); border:1px solid var(--line); border-radius:16px; padding:36px 34px}
+  .tcard .stars{color:var(--clay); letter-spacing:3px; font-size:14px; margin-bottom:18px}
+  .tcard blockquote{font-family:var(--serif); font-size:20px; line-height:1.45; color:var(--cream); font-style:italic}
+  .tcard .who{margin-top:22px; display:flex; align-items:center; gap:13px}
+  .tcard .who .av{width:40px;height:40px;border-radius:50%;background:var(--clay);color:#fff;display:flex;
+    align-items:center;justify-content:center;font-weight:700;font-size:15px}
+  .tcard .who .nm{font-weight:600;font-size:14.5px} .tcard .who .rl{font-size:12.5px;color:var(--muted)}
+  .quotes .note{margin-top:26px; font-size:12.5px; color:var(--inkmuted); letter-spacing:.04em}
 
+  /* ---------- TEAM ---------- */
+  .team{background:var(--cream); color:var(--brown)}
+  .team .eyebrow{color:var(--inkmuted)}
+  .team h2{font-weight:700; letter-spacing:-.02em; line-height:1; font-size:clamp(34px,4.6vw,60px); text-transform:lowercase; margin-bottom:40px}
+  .team .teamimg{border-radius:18px; overflow:hidden; margin-bottom:34px}
+  .team .teamimg img{width:100%; aspect-ratio:16/7; object-fit:cover}
+  .people{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
+  .person{background:var(--cream2); border:1px solid var(--linedark); border-radius:14px; overflow:hidden}
+  .person .pic{aspect-ratio:1/1; overflow:hidden; background:#e4d9c9}
+  .person .pic img{width:100%;height:100%;object-fit:cover}
+  .person .pic.ph{display:flex;align-items:center;justify-content:center;color:var(--inkmuted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:10px}
+  .person .b{padding:16px 16px 18px}
+  .person .b .nm{font-weight:700; font-size:16px}
+  .person .b .rl{font-size:12.5px; color:var(--inkmuted); letter-spacing:.04em; margin-top:3px}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--brown)}
+  .qa{border-top:1px solid var(--line)}
+  .qa:last-child{border-bottom:1px solid var(--line)}
+  .qa summary{list-style:none; cursor:pointer; padding:26px 0; display:flex; align-items:center;
+    justify-content:space-between; gap:20px; font-size:clamp(18px,2.2vw,24px); font-weight:600; letter-spacing:-.01em}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary .pm{color:var(--clay); font-size:26px; transition:transform .3s; flex:0 0 auto}
+  .qa[open] summary .pm{transform:rotate(45deg)}
+  .qa .ans{padding:0 0 28px; max-width:760px; color:var(--muted); font-size:15.5px; line-height:1.65}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--clay); color:#fff}
+  .contact .csplit{display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:start}
+  .contact h2{font-weight:700; letter-spacing:-.03em; line-height:.98; font-size:clamp(38px,5.4vw,74px); text-transform:lowercase}
+  .contact .intro{max-width:360px; margin:20px 0 30px; font-size:16px; opacity:.94}
+  .contact .direct a{display:block; font-size:15px; margin-bottom:10px; opacity:.95}
+  .contact .direct a:hover{opacity:1; text-decoration:underline}
+  .cform{background:var(--brown); border-radius:20px; padding:38px 36px}
+  .cform .frow{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .cform label{display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:16px 0 8px}
+  .cform input,.cform select,.cform textarea{width:100%; background:#1b130d; border:1px solid var(--line);
+    border-radius:10px; padding:13px 15px; color:var(--cream); font-family:inherit; font-size:15px}
+  .cform input:focus,.cform select:focus,.cform textarea:focus{outline:none; border-color:var(--clay)}
+  .cform textarea{min-height:120px; resize:vertical}
+  .cform .hp{position:absolute; left:-9999px}
+  .cform button{margin-top:22px; width:100%; padding:16px; font-size:14px}
+  .cform .ok{display:none; text-align:center; padding:30px 10px}
+  .cform .ok .big{font-size:24px; font-weight:700; margin-bottom:10px}
+  .cform .ok p{color:var(--muted); font-size:14.5px}
+
+  /* ---------- HOMEPAGE RESPONSIVE ---------- */
   @media(max-width:820px){
-    .soundtoggle{left:16px; bottom:16px; padding:9px 13px}
+    .feat{grid-template-columns:1fr} .studio .split{grid-template-columns:1fr; gap:34px}
+    .svcrow{grid-template-columns:36px 1fr; row-gap:6px} .svcrow .desc,.svcrow .arrow{display:none}
+    .proc{grid-template-columns:1fr 1fr} .tgrid{grid-template-columns:1fr}
+    .people{grid-template-columns:1fr 1fr}
+    .contact .csplit{grid-template-columns:1fr; gap:34px} .cform .frow{grid-template-columns:1fr}
     .hero .scrollcue{display:none}
   }
-  @media (prefers-reduced-motion:reduce){
-    .soundtoggle.on .eq i,.hero .scrollcue .ln{animation:none}
-    html.js [data-reveal]{opacity:1; transform:none}
-  }
-
 </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav class="bar">
-    <div class="logo">credo<span class="d"></span></div>
+    <a href="#top" class="logo">credo<span class="d"></span></a>
     <div class="navlinks">
-      <a href="#work">Work</a><a href="#studio">Studio</a><a href="#services">Services</a>
-      <a href="#team">Team</a><a class="btn" href="#contact">Start a Project →</a>
+      <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a>
+      <a href="#studio">Studio</a><a href="#faq">FAQ</a><a class="btn magnetic" href="#contact">Start a Project →</a>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="top">
     <canvas class="glcanvas" aria-hidden="true"></canvas>
     <div class="heroscrim"></div>
     <div class="grain"></div><div class="blob b1"></div><div class="blob b2"></div>
     <div class="wrap">
-      <div class="eyebrow" data-reveal><span class="sq"></span>Credo · Creative Studio · Since 2018</div>
+      <div class="eyebrow" data-reveal><span class="sq"></span>Credo · Creative &amp; Web Studio · Since 2018</div>
       <h1 class="head" data-reveal>we build<br>brands that<br><span class="clay">move</span> <span class="out">people</span>.</h1>
       <p class="lead" data-reveal>Credo is an independent design &amp; web studio crafting warm, characterful brand
         sites — branding, motion, art direction and clean front-end code, shipped end to end.</p>
@@ -261,13 +220,58 @@
     <div class="wrap">
       <div class="sechead">
         <div><div class="eyebrow"><span class="sq"></span>Selected Work</div>
-          <h2>homepages we've<br>designed &amp; built.</h2></div>
-        <p>A rolling wall of concept &amp; studio homepages — from dark-luxury to warm editorial.</p>
+          <h2>case studies &amp;<br>homepages we've built.</h2></div>
+        <p>Every project below opens a full case study — the brief, our approach, and the build.</p>
+      </div>
+      <div class="feat">
+        <a class="fcard" href="work/eternel.html" data-reveal>
+          <span class="tag">Concept · Fashion house</span>
+          <div class="ph"><img src="credo_assets/work_eternel.png" alt="Éternel — fashion house site"></div>
+          <div class="cap"><div><div class="t">Éternel</div><div class="s">Branding · Web · Motion</div></div><span class="go">→</span></div>
+        </a>
+        <a class="fcard" href="work/northwind.html" data-reveal>
+          <span class="tag">Concept · SaaS</span>
+          <div class="ph"><img src="credo_assets/site_northwind.png" alt="Northwind — analytics SaaS site"></div>
+          <div class="cap"><div><div class="t">Northwind</div><div class="s">Product · Web · UI</div></div><span class="go">→</span></div>
+        </a>
+        <a class="fcard" href="work/verso.html" data-reveal>
+          <span class="tag">Concept · Editorial</span>
+          <div class="ph"><img src="credo_assets/site_verso.png" alt="Verso — magazine site"></div>
+          <div class="cap"><div><div class="t">Verso</div><div class="s">Editorial · Web · Art Direction</div></div><span class="go">→</span></div>
+        </a>
       </div>
     </div>
     <div class="ticker">
       <div class="tick-row r1"><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div></div>
       <div class="tick-row r2"><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="svc pad" id="services">
+    <div class="wrap">
+      <div class="sechead"><div><div class="eyebrow"><span class="sq"></span>What we do</div>
+        <h2>services.</h2></div>
+        <p>Four disciplines, one team — combined into brand experiences that ship.</p></div>
+      <a class="svcrow" href="#contact"><span class="n">01</span><span class="name">branding</span><span class="desc">Logo systems, visual identity, guidelines and brand collateral.</span><span class="arrow">→</span></a>
+      <a class="svcrow" href="#contact"><span class="n">02</span><span class="name">web design &amp; development</span><span class="desc">Custom, hand-coded sites — landing pages to full builds. Fast &amp; responsive.</span><span class="arrow">→</span></a>
+      <a class="svcrow" href="#contact"><span class="n">03</span><span class="name">motion design</span><span class="desc">Smooth-scroll interactions, micro-animation and launch films.</span><span class="arrow">→</span></a>
+      <a class="svcrow" href="#contact"><span class="n">04</span><span class="name">art direction</span><span class="desc">Photography direction, campaign visuals and creative strategy.</span><span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process pad" id="process">
+    <div class="wrap">
+      <div class="sechead"><div><div class="eyebrow"><span class="sq"></span>How we work</div>
+        <h2>a clear path<br>from idea to launch.</h2></div>
+        <p>No account managers, no black box. Four focused stages, fixed scope, fixed timeline.</p></div>
+      <div class="proc">
+        <div class="pstep" data-reveal><div class="pn">01</div><h3>discover</h3><p>A kickoff call to understand your brand, audience and goals. You get a written scope, timeline and fixed quote before anything starts.</p></div>
+        <div class="pstep" data-reveal><div class="pn">02</div><h3>design</h3><p>We design in the browser — real type, real layout, on real devices. You review live previews and shape the direction with us, not from static mockups.</p></div>
+        <div class="pstep" data-reveal><div class="pn">03</div><h3>build</h3><p>Hand-coded, fast and responsive. Smooth-scroll motion, clean markup, SEO basics and a CMS if you need to edit it yourself.</p></div>
+        <div class="pstep" data-reveal><div class="pn">04</div><h3>launch</h3><p>We deploy, connect your domain, set up analytics and hand over. Two weeks of free tweaks after go-live, plus optional ongoing care.</p></div>
+      </div>
     </div>
   </section>
 
@@ -297,16 +301,23 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="svc pad" id="services">
+  <!-- TESTIMONIALS -->
+  <section class="quotes pad">
     <div class="wrap">
-      <div class="sechead"><div><div class="eyebrow"><span class="sq"></span>What we do</div>
-        <h2>services.</h2></div>
-        <p>Four disciplines, one team — combined into brand experiences that ship.</p></div>
-      <div class="svcrow"><span class="n">01</span><span class="name">branding</span><span class="desc">Logo systems, visual identity, guidelines and brand collateral.</span><span class="arrow">→</span></div>
-      <div class="svcrow"><span class="n">02</span><span class="name">web design &amp; development</span><span class="desc">Custom, hand-coded sites — landing pages to full builds. Fast &amp; responsive.</span><span class="arrow">→</span></div>
-      <div class="svcrow"><span class="n">03</span><span class="name">motion design</span><span class="desc">Smooth-scroll interactions, micro-animation and launch films.</span><span class="arrow">→</span></div>
-      <div class="svcrow"><span class="n">04</span><span class="name">art direction</span><span class="desc">Photography direction, campaign visuals and creative strategy.</span><span class="arrow">→</span></div>
+      <div class="sechead"><div><div class="eyebrow"><span class="sq"></span>Kind words</div>
+        <h2>what working<br>with credo feels like.</h2></div>
+        <p>Founders and marketers we've partnered with, in their words.</p></div>
+      <div class="tgrid">
+        <div class="tcard" data-reveal><div class="stars">★★★★★</div>
+          <blockquote>“Credo turned a vague idea into a site that finally looks like the company we want to be. Launch traffic converted twice as well as our old page.”</blockquote>
+          <div class="who"><div class="av">S</div><div><div class="nm">— Client name</div><div class="rl">Founder · replace with a real quote</div></div></div>
+        </div>
+        <div class="tcard" data-reveal><div class="stars">★★★★★</div>
+          <blockquote>“Fast, senior and genuinely creative. We worked directly with the designer the whole way — no telephone game, no surprises on the invoice.”</blockquote>
+          <div class="who"><div class="av">M</div><div><div class="nm">— Client name</div><div class="rl">Head of Marketing · replace with a real quote</div></div></div>
+        </div>
+      </div>
+      <p class="note">↑ Placeholder quotes — swap these for real client testimonials as you complete projects.</p>
     </div>
   </section>
 
@@ -329,13 +340,64 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta pad" id="contact">
+  <!-- FAQ -->
+  <section class="faq pad" id="faq">
     <div class="wrap">
-      <div class="eyebrow" style="color:rgba(255,255,255,.7); justify-content:center">Start a Project</div>
-      <h2>let's build<br>something worth<br>believing in.</h2>
-      <p>Tell us about your brand and what you want it to do. We reply within one business day.</p>
-      <a class="btn" href="mailto:hello@credo.studio">hello@credo.studio →</a>
+      <div class="sechead"><div><div class="eyebrow"><span class="sq"></span>Questions</div>
+        <h2>good to know.</h2></div>
+        <p>The things clients ask before we start. Anything else — just ask.</p></div>
+      <details class="qa" open><summary>What does a project cost?<span class="pm">+</span></summary><div class="ans">Most landing pages start around $800–$1,500, full multi-page brand sites from $2,500. Every project gets a fixed quote after the discovery call — no hourly surprises. Branding and motion are quoted per scope.</div></details>
+      <details class="qa"><summary>How long does it take?<span class="pm">+</span></summary><div class="ans">A focused landing page is usually 1–2 weeks. A full brand site is typically 3–5 weeks depending on page count, content readiness and rounds of feedback. We agree the timeline up front in the scope.</div></details>
+      <details class="qa"><summary>Do you write the copy and provide images?<span class="pm">+</span></summary><div class="ans">We can. Copy direction and art direction are part of what we do — we'll either shape your existing content or write and source visuals for you as an add-on. Nothing ships with lorem ipsum.</div></details>
+      <details class="qa"><summary>Can I edit the site myself after launch?<span class="pm">+</span></summary><div class="ans">Yes — if you need to update content, we build on a lightweight CMS so you can edit text and images without touching code. If you'd rather we handle changes, we offer a simple monthly care plan.</div></details>
+      <details class="qa"><summary>What do you need from me to start?<span class="pm">+</span></summary><div class="ans">A short brief on your business and goals, any brand assets you already have, and examples of sites you like. We handle the rest and guide you through each stage.</div></details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact pad" id="contact">
+    <div class="wrap">
+      <div class="csplit">
+        <div>
+          <div class="eyebrow" style="color:rgba(255,255,255,.75)"><span class="sq" style="background:#fff"></span>Start a Project</div>
+          <h2>let's build<br>something worth<br>believing in.</h2>
+          <p class="intro">Tell us about your brand and what you want it to do. We reply within one business day.</p>
+          <div class="direct">
+            <a href="mailto:hello@credostudio.design">✉ hello@credostudio.design</a>
+            <a href="#work">◆ See our work</a>
+          </div>
+        </div>
+        <form class="cform" name="project-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="pform">
+          <input type="hidden" name="form-name" value="project-inquiry">
+          <p class="hp"><label>Leave blank: <input name="bot-field"></label></p>
+          <div class="fields">
+            <div class="frow">
+              <div><label>Your name</label><input type="text" name="name" required placeholder="Jane Doe"></div>
+              <div><label>Email</label><input type="email" name="email" required placeholder="jane@company.com"></div>
+            </div>
+            <div class="frow">
+              <div><label>Company (optional)</label><input type="text" name="company" placeholder="Company Inc."></div>
+              <div><label>Budget</label>
+                <select name="budget">
+                  <option value="">Select a range</option>
+                  <option>Under $1,000</option><option>$1,000 – $2,500</option>
+                  <option>$2,500 – $5,000</option><option>$5,000+</option>
+                </select>
+              </div>
+            </div>
+            <label>What do you need?</label>
+            <select name="project_type">
+              <option value="">Select a service</option>
+              <option>Landing page</option><option>Full brand website</option>
+              <option>Website redesign</option><option>Branding / identity</option><option>Something else</option>
+            </select>
+            <label>Tell us about your project</label>
+            <textarea name="message" required placeholder="A few sentences about your business, goals and timeline…"></textarea>
+            <button type="submit" class="btn big magnetic">Send project brief →</button>
+          </div>
+          <div class="ok"><div class="big">Thank you — brief received. ✦</div><p>We'll reply within one business day at the email you gave us.</p></div>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -344,12 +406,13 @@
     <div class="wrap">
       <div class="fgrid">
         <div style="max-width:280px">
-          <div class="logo" style="margin-bottom:14px">credo<span class="d"></span></div>
+          <a href="#top" class="logo" style="margin-bottom:14px">credo<span class="d"></span></a>
           <p style="color:#b9ad9c;font-size:14px">An independent creative &amp; web studio building brands that move people.</p>
         </div>
-        <div class="fcol"><h4>Studio</h4><a href="#work">Work</a><a href="#studio">About</a><a href="#services">Services</a><a href="#team">Team</a></div>
-        <div class="fcol"><h4>Services</h4><a>Branding</a><a>Web Design</a><a>Motion</a><a>Art Direction</a></div>
-        <div class="fcol"><h4>Connect</h4><a href="mailto:hello@credo.studio">hello@credo.studio</a><a>Instagram</a><a>Dribbble</a><a>LinkedIn</a></div>
+        <div class="fcol"><h4>Studio</h4><a href="#work">Work</a><a href="#studio">About</a><a href="#process">Process</a><a href="#team">Team</a><a href="#faq">FAQ</a></div>
+        <div class="fcol"><h4>Services</h4><a href="#services">Branding</a><a href="#services">Web Design</a><a href="#services">Motion</a><a href="#services">Art Direction</a></div>
+        <div class="fcol"><h4>Case studies</h4><a href="work/eternel.html">Éternel</a><a href="work/northwind.html">Northwind</a><a href="work/verso.html">Verso</a></div>
+        <div class="fcol"><h4>Connect</h4><a href="mailto:hello@credostudio.design">hello@credostudio.design</a><a href="#contact">Start a project</a></div>
       </div>
       <div class="fbottom"><span>© 2026 Credo Studio. All rights reserved.</span><span>Designed &amp; built in-house.</span></div>
     </div>
