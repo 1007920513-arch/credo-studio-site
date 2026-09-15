@@ -76,6 +76,24 @@
   .bcard .shot img{width:100%;height:100%;object-fit:cover;object-position:top; transition:transform .5s}
   .bcard:hover .shot img{transform:scale(1.05)}
 
+  /* ---------- TEMPLATES TEASER ---------- */
+  .templates{background:var(--brown2)}
+  .tmpl-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:44px}
+  .tcardx{position:relative; border-radius:14px; overflow:hidden; background:var(--brown); border:1px solid var(--line);
+    display:block; transition:transform .4s ease, border-color .4s}
+  .tcardx:hover{transform:translateY(-6px); border-color:rgba(224,85,43,.6)}
+  .tcardx .bar{display:flex; gap:5px; padding:10px 12px; background:#1b130d; align-items:center}
+  .tcardx .bar i{width:8px;height:8px;border-radius:50%;background:#3a2c22}
+  .tcardx .bar i:first-child{background:var(--clay)}
+  .tcardx .ph{aspect-ratio:16/11; overflow:hidden}
+  .tcardx .ph img{width:100%;height:100%;object-fit:cover;object-position:top; transition:transform .6s ease}
+  .tcardx:hover .ph img{transform:scale(1.05)}
+  .tcardx .cap{padding:14px 16px}
+  .tcardx .cap .t{font-weight:700; font-size:16px}
+  .tcardx .cap .s{font-size:12px; color:var(--muted); margin-top:3px}
+  .templates .foot{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap}
+  .templates .foot .note{color:var(--muted); font-size:14px; max-width:440px}
+
   /* ---------- STUDIO / ABOUT ---------- */
   .studio{background:var(--cream); color:var(--brown)}
   .studio .eyebrow{color:var(--inkmuted)}
@@ -187,7 +205,7 @@
   <nav class="bar">
     <a href="#top" class="logo">credo<span class="d"></span></a>
     <div class="navlinks">
-      <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a>
+      <a href="#work">Work</a><a href="templates/">Templates</a><a href="#services">Services</a>
       <a href="#studio">Studio</a><a href="#faq">FAQ</a><a class="btn magnetic" href="#contact">Start a Project →</a>
     </div>
   </nav>
@@ -244,6 +262,39 @@
     <div class="ticker">
       <div class="tick-row r1"><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div></div>
       <div class="tick-row r2"><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_sabora.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_fashion.jpg" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/work_eternel.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_credo.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_verso.png" alt=""></div></div><div class="bcard"><div class="bar"><i></i><i></i><i></i></div><div class="shot"><img src="credo_assets/site_northwind.png" alt=""></div></div></div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES TEASER -->
+  <section class="templates pad" id="templates">
+    <div class="wrap">
+      <div class="sechead">
+        <div><div class="eyebrow"><span class="sq"></span>Start from a template</div>
+          <h2>a library of<br>ready-to-brand sites.</h2></div>
+        <p>Fourteen fully-built, animated templates — brands, factories, shops and launches. Preview any of them live, pick one, and we make it yours.</p>
+      </div>
+      <div class="tmpl-grid">
+        <a class="tcardx" href="templates/mora/" data-reveal>
+          <div class="bar"><i></i><i></i><i></i></div><div class="ph"><img src="templates/mora_thumb_d.jpg" alt="MŌRA template"></div>
+          <div class="cap"><div class="t">MŌRA</div><div class="s">Brand site · Skincare</div></div>
+        </a>
+        <a class="tcardx" href="templates/nauta/" data-reveal>
+          <div class="bar"><i></i><i></i><i></i></div><div class="ph"><img src="templates/nauta_thumb_d.jpg" alt="NAUTA template"></div>
+          <div class="cap"><div class="t">NAUTA°</div><div class="s">Brand site · Tech hardware</div></div>
+        </a>
+        <a class="tcardx" href="templates/summit/" data-reveal>
+          <div class="bar"><i></i><i></i><i></i></div><div class="ph"><img src="templates/summit_thumb_d.jpg" alt="Summit template"></div>
+          <div class="cap"><div class="t">Summit</div><div class="s">Factory · Outdoor gear</div></div>
+        </a>
+        <a class="tcardx" href="templates/sera/" data-reveal>
+          <div class="bar"><i></i><i></i><i></i></div><div class="ph"><img src="templates/sera_thumb_d.jpg" alt="SÉRA template"></div>
+          <div class="cap"><div class="t">SÉRA°</div><div class="s">E-commerce · Fashion</div></div>
+        </a>
+      </div>
+      <div class="foot">
+        <p class="note">Every template is 100% custom-coded — desktop &amp; mobile, load &amp; scroll motion all done. Swap in your brand, copy and photos and it's ready to launch.</p>
+        <a class="btn big magnetic" href="templates/">Browse all 14 templates →</a>
+      </div>
     </div>
   </section>
 
@@ -409,7 +460,7 @@
           <a href="#top" class="logo" style="margin-bottom:14px">credo<span class="d"></span></a>
           <p style="color:#b9ad9c;font-size:14px">An independent creative &amp; web studio building brands that move people.</p>
         </div>
-        <div class="fcol"><h4>Studio</h4><a href="#work">Work</a><a href="#studio">About</a><a href="#process">Process</a><a href="#team">Team</a><a href="#faq">FAQ</a></div>
+        <div class="fcol"><h4>Studio</h4><a href="#work">Work</a><a href="templates/">Templates</a><a href="#studio">About</a><a href="#process">Process</a><a href="#faq">FAQ</a></div>
         <div class="fcol"><h4>Services</h4><a href="#services">Branding</a><a href="#services">Web Design</a><a href="#services">Motion</a><a href="#services">Art Direction</a></div>
         <div class="fcol"><h4>Case studies</h4><a href="work/eternel.html">Éternel</a><a href="work/northwind.html">Northwind</a><a href="work/verso.html">Verso</a></div>
         <div class="fcol"><h4>Connect</h4><a href="mailto:hello@credostudio.design">hello@credostudio.design</a><a href="#contact">Start a project</a></div>
